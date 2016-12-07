@@ -76,12 +76,14 @@ class StackdriverHandler(Handler):
 
 
     def get_vpc(self,):
-        my_mac = self.metadata_request(url='http://169.254.169.254/latest/meta-data/network/interfaces/macs/')
-        vpc_id = self.metadata_request(url='http://169.254.169.254/latest/meta-data/network/interfaces/macs/' + my_mac + '/' + 'vpc-id')
+        mac_url = 'http://169.254.169.254/latest/meta-data/network/interfaces/macs/'
+        my_mac = self.metadata_request(url=mac_url)
+        vpc_id = self.metadata_request(url=mac_url + my_mac + '/' + 'vpc-id')
         return vpc_id
 
     def get_aws_meta(self,):
-        document = json.loads(self.metadata_request(url='http://169.254.169.254/latest/dynamic/instance-identity/document'))
+        document_url = 'http://169.254.169.254/latest/dynamic/instance-identity/document'
+        document = json.loads(self.metadata_request(url=document_url))
         resource_labels = {
             'instance_id': document['instanceId'],
             'region': 'aws' + ':' + document['region'],
