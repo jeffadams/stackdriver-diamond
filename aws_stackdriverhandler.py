@@ -16,15 +16,10 @@ class StackdriverHandler(Handler):
           Create a new instance of class StackdriverHandler
         """
         Handler.__init__(self, config)
+        self.resource_labels, self.metric_labels = self.get_aws_meta()
         self.client = self.make_client() 
         self.type = 'aws_ec2_instance'
-
-        self.resource_labels, self.metric_labels = self.get_aws_meta()
-        for k,v in self.resource_labels.iteritems():
-            print("Resource: %s %s" % (k,v))
-        for k,v in self.metric_labels.iteritems():
-            print("Metric: %s %s" % (k,v))
-           
+        
     def make_client(self):
         if self.config['credential_file']:
             try:
