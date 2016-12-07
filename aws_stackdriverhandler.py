@@ -10,8 +10,6 @@ from google.cloud import monitoring, exceptions
 from Handler import Handler
 from oauth2client.contrib.gce import AppAssertionCredentials
 
-HOSTNAME = socket.gethostname()
-
 class StackdriverHandler(Handler):
     def __init__(self, config=None):
         """
