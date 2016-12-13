@@ -26,20 +26,27 @@ version = 1
 LABEL_env = www
 LABEL_env = prod
 
-That will produce the metric:
+Additional metric labels 'instanceType' and 'vpc_id' will
+be created from the instance metadata by default. 
+
+The sample config would produce the metric:
 
 MyApp.1/loadavg/05
 
-with the labels:
+with the metric labels:
+
 app : www
 env : prd
+instanceType: <instanceType>
+vpc_id: <vpc_id>
 
-The version is important. Metric labels are immutable, and
+The 'version' config item is required and must be changed if you add a new label. 
+Metric labels are immutable, and
 delete operations can take some time (I've seen hours.) 
+If you add/change a label without changing the version, 
+the agent will not be able to write metrics. 
 
-If you add a label, you MUST increment the version or the agent 
-will not be able to write to the API. 
-
+This handler does support creating labels from instance tags, with caveats. 
 To use instance tags as metric labels: 
 
 use_tags = True
