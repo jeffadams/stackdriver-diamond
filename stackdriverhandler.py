@@ -38,7 +38,7 @@ To use instance tags as metric labels:
 use_tags = True
 
 However, this handler does not currently support automatic versioning of labels. 
-If you use tags, you must be careful to follow this procedure:
+If you use tags, you must be careful to follow this procedure to add new ones:
 
 Stop the agent
 Change the version number
