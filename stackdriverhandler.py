@@ -1,22 +1,8 @@
-import datetime
-import json
-import urllib2
-import socket
-
-import boto.ec2
-import boto.utils
-from configobj import Section
-from google.cloud import monitoring, exceptions
-from Handler import Handler
-from oauth2client.contrib.gce import AppAssertionCredentials
-
-
+# coding=utf-8
 '''
+Send metrics from AWS to the Google Stackdriver custom metrics API. 
 
-jeff.adams@linux.com
-
-Handler to send metrics from AWS to the 
-Google Stackdriver custom metrics API. 
+Requires google-cloud
 
 Sample configuration:
 
@@ -62,8 +48,17 @@ Restart the agent
 Stackdriver does not currently have an API for alert configuration, but it is on the 
 roadmap. Once that's available, it should be possible to use instance tags more reliably. 
 
-'''
+jeff.adams@linux.com
 
+'''
+import datetime
+import json
+import urllib2
+import socket
+
+from configobj import Section
+from google.cloud import monitoring, exceptions
+from Handler import Handler
 
 class StackdriverHandler(Handler):
     def __init__(self, config=None):
@@ -116,6 +111,7 @@ class StackdriverHandler(Handler):
     def get_metric_labels(self,region='', instance_id=''):
         metric_labels = {}
         if self.config['use_tags']:
+            import boto.ec2
             conn = boto.ec2.connect_to_region(region)
             #TODO: Check for AttributeError on this call to indicate credential problems.
             reservations = conn.get_all_instances(instance_ids=instance_id)
