@@ -46,7 +46,7 @@ delete operations can take some time (I've seen hours.)
 If you add/change a label without changing the version, 
 the agent will not be able to write metrics. 
 
-This handler does support creating labels from instance tags, with caveats. 
+This handler supports the creation of labels from instance tags, with caveats. 
 To use instance tags as metric labels: 
 
 use_tags = True
