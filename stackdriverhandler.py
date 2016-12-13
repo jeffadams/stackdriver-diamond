@@ -15,8 +15,8 @@ from oauth2client.contrib.gce import AppAssertionCredentials
 
 jeff.adams@linux.com
 
-Handler to send metrics from AWS to the Google Stackdriver 
-custom metrics API. 
+Handler to send metrics from AWS to the 
+Google Stackdriver custom metrics API. 
 
 Sample configuration:
 
