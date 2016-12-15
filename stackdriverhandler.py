@@ -80,7 +80,7 @@ class StackdriverHandler(Handler):
         config = super(StackdriverHandler, self).get_default_config()
 
         config.update({
-            'credential_file': '/etc/google/auth/credentials.json',
+            'credential_file': '/etc/google/auth/application_default_credentials.json ',
             'group' : '',
             'version': '',
             'use_tags': False,
