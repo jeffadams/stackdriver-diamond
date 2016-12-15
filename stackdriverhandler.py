@@ -48,7 +48,7 @@ Restart the agent
 Stackdriver does not currently have an API for alert configuration, but it is on the 
 roadmap. Once that's available, it should be possible to use instance tags more reliably. 
 
-jeff.adams@linux.com
+pacetownsley@gmail.com
 
 '''
 import datetime
