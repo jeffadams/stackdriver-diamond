@@ -9,7 +9,7 @@ Sample configuration:
 [[StackdriverHandler]]
 group   = MyApp
 version = 1
-LABEL_env = www
+LABEL_app = www
 LABEL_env = prod
 
 Additional metric labels 'instanceType' and 'vpc_id' will
