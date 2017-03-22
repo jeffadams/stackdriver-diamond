@@ -28,22 +28,15 @@ vpc_id: <vpc_id>
 
 The 'version' config item is required and must be changed if you add a new label. 
 Metric labels are immutable, and
-delete operations can take some time (I've seen hours.) 
+delete operations can take some time.
 If you add/change a label without changing the version, 
 the agent will not be able to write metrics. 
 
-This handler supports the creation of labels from instance tags, with caveats. 
+This handler supports the creation of labels from instance tags, with the caveat that you must
+change the metric version number and restart the agent at the same time that you add new tags. 
 To use instance tags as metric labels: 
 
 use_tags = True
-
-However, this handler does not currently support automatic versioning of labels. 
-If you use tags, you must be careful to follow this procedure to add new ones:
-
-Stop the agent
-Change the version number
-Add tags
-Restart the agent
 
 pacetownsley@gmail.com
 
