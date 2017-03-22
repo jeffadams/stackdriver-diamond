@@ -163,9 +163,9 @@ class StackdriverHandler(Handler):
             resource_descriptor = 'custom.googleapis.com' + '/' + self.group + '/' + collector + '/' + metricname
         else:
             resource_descriptor = 'custom.googleapis.com' + '/' +  collector + '/' + metricname
+        self.log.info(resource_descriptor)
         
         resource = self.client.resource(self.resource_type, self.resource_labels)
-        self.log.info(resource_descriptor) 
         metric   = self.client.metric(resource_descriptor, self.metric_labels,)
         self.log.debug("Processing %s" % resource_descriptor) 
         self.client.write_point(resource=resource, metric=metric, value=metricvalue,)
